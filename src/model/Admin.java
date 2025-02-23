@@ -1,11 +1,30 @@
 package model;
+import java.util.ArrayList;
 
 public class Admin extends User {
+	private ArrayList<Medicine> medicines;
+	
     public Admin(String userId, String name, String email, String password) {
         super(userId, name, email, password);
+        medicines = new ArrayList<>();
     }
 
-    public void manageMedicines() {
-        System.out.println("Admin " + getName() + " is managing medicines.");
+    public void addMedicine(Medicine medicine) {
+        medicines.add(medicine);
+        System.out.println("Medicine added: " + medicine.getName());
     }
+
+    public void removeMedicine(String medicineId) {
+        medicines.removeIf(med -> med.getMedicineId().equals(medicineId));
+        System.out.println("Medicine with ID " + medicineId + " removed.");
+    }
+
+    public void listMedicines() {
+        System.out.println("Available Medicines:");
+        for (Medicine med : medicines) {
+            System.out.println(med);
+        }
+    }
+    
+    
 }
