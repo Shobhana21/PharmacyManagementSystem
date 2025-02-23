@@ -1,4 +1,4 @@
-package pharmacy;
+package main;
 
 public class PharmacyManagementSystem {
 

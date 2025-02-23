@@ -1,4 +1,6 @@
-package pharmacy;
+package model;
+
+import pharmacy.User;
 
 public class Admin extends User{
 	private String role; // e.g., "Manager", "Supervisor"

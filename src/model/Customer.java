@@ -1,4 +1,6 @@
-package pharmacy;
+package model;
+
+import pharmacy.User;
 
 public class Customer extends User {
 	 private String address;

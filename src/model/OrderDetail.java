@@ -1,4 +1,4 @@
-package pharmacy;
+package model;
 
 public class OrderDetail {
 	 private String orderDetailId;
