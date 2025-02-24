@@ -20,11 +20,26 @@ public class Admin extends User {
     }
 
     public void listMedicines() {
+    	if (medicines.isEmpty()) {
+            System.out.println("No medicines available.");
+        } 
+    	else {
         System.out.println("Available Medicines:");
         for (Medicine med : medicines) {
             System.out.println(med);
         }
+    	}
     }
+    
+    public Medicine searchMedicine(String name) {
+        for (Medicine med : medicines) {
+            if (med.getName().equalsIgnoreCase(name)) {
+                return med;
+            }
+        }
+        return null;
+    }
+
     
     
 }

@@ -1,5 +1,6 @@
 package model;
 
+
 public class Customer extends User {
     private String address;
     private String phoneNumber;
@@ -17,6 +18,8 @@ public class Customer extends User {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+    
+ 
 
     @Override
     public String toString() {

@@ -13,6 +13,12 @@ public class Medicine {
 	        this.quantity = quantity;
 	    }
 	    
+	    public Medicine(String medicineId, String name, double price) {
+	        this.medicineId = medicineId;
+	        this.name = name;
+	        this.price = price;
+	    }
+	    
 	    public String getMedicineId() { return medicineId; }
 	    public String getName() { return name; }
 	    public double getPrice() { return price; }
