@@ -3,73 +3,39 @@ package main;
 import model.Admin;
 import model.Customer;
 import model.Medicine;
-import java.util.Scanner;
+import model.Order;
+import model.OrderDetail;
 
 public class PharmacyManagementSystem {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        // Creating Admin and Customer (You can later replace this with login logic)
+        // Step 1: Create an Admin and manage medicines
         Admin admin = new Admin("A101", "Shobhana", "admin@example.com", "admin123");
+
+        // Adding medicines
+        Medicine med1 = new Medicine("M001", "Paracetamol", 1.5);
+        Medicine med2 = new Medicine("M002", "Cough Syrup", 3.0);
+        Medicine med3 = new Medicine("M003", "Vitamin C", 2.5);
+
+        admin.addMedicine(med1);
+        admin.addMedicine(med2);
+        admin.addMedicine(med3);
+
+        // Display available medicines
+        System.out.println("\n=== Available Medicines ===");
+        admin.listMedicines();
+
+        // Step 2: Create a Customer
         Customer customer = new Customer("C101", "John Doe", "john@example.com", "pass123", "123 Street", "9876543210");
 
-        System.out.println("Welcome to the Pharmacy Management System!");
+        // Step 3: Customer places an order
+        Order order = new Order("O101", customer.getUserId());
 
-        while (true) {
-            System.out.println("\nChoose an option:");
-            System.out.println("1. Add Medicine");
-            System.out.println("2. Remove Medicine");
-            System.out.println("3. List Medicines");
-            System.out.println("4. Search Medicine");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
-            
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-            
-            switch (choice) {
-                case 1: // Add Medicine
-                    System.out.print("Enter Medicine ID: ");
-                    String medId = scanner.nextLine();
-                    System.out.print("Enter Medicine Name: ");
-                    String medName = scanner.nextLine();
-                    System.out.print("Enter Price: ");
-                    double price = scanner.nextDouble();
-                    scanner.nextLine(); // Consume newline
-                    
-                    Medicine medicine = new Medicine(medId, medName, price);
-                    admin.addMedicine(medicine);
-                    break;
-                
-                case 2: // Remove Medicine
-                    System.out.print("Enter Medicine ID to remove: ");
-                    String removeId = scanner.nextLine();
-                    admin.removeMedicine(removeId);
-                    break;
-                
-                case 3: // List Medicines
-                    admin.listMedicines();
-                    break;
-                
-                case 4: // Search Medicine
-                    System.out.print("Enter Medicine Name to search: ");
-                    String searchName = scanner.nextLine();
-                    Medicine foundMed = admin.searchMedicine(searchName);
-                    if (foundMed != null) {
-                        System.out.println("Medicine Found: " + foundMed);
-                    } else {
-                        System.out.println("Medicine not found.");
-                    }
-                    break;
-                
-                case 5: // Exit
-                    System.out.println("Exiting Pharmacy Management System. Goodbye!");
-                    scanner.close();
-                    return;
-                
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
+        // Step 4: Add medicines to the order
+        order.addOrderDetail(new OrderDetail(med1.getMedicineId(), 2, med1.getPrice()));
+        order.addOrderDetail(new OrderDetail(med2.getMedicineId(), 1, med2.getPrice()));
+
+        // Step 5: Display order details
+        System.out.println("\n=== Order Summary ===");
+        System.out.println(order);
     }
 }
