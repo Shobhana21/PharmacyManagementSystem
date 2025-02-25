@@ -1,28 +1,23 @@
 package model;
-
+import java.util.ArrayList;
 
 public class Customer extends User {
-    private String address;
-    private String phoneNumber;
+	
+	    private String address;
+	    private String phoneNumber;
+    private ArrayList<Order> orders; // Stores customer orders
 
     public Customer(String userId, String name, String email, String password, String address, String phoneNumber) {
-        super(userId, name, email, password);
+        super(userId, name, email, password);  // Call the parent `User` constructor
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    
- 
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Address: " + address + ", Phone: " + phoneNumber;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 }

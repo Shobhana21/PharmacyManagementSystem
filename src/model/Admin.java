@@ -2,8 +2,8 @@ package model;
 import java.util.ArrayList;
 
 public class Admin extends User {
-	private ArrayList<Medicine> medicines;
-	
+    private ArrayList<Medicine> medicines;
+
     public Admin(String userId, String name, String email, String password) {
         super(userId, name, email, password);
         medicines = new ArrayList<>();
@@ -20,26 +20,13 @@ public class Admin extends User {
     }
 
     public void listMedicines() {
-    	if (medicines.isEmpty()) {
+        if (medicines.isEmpty()) {
             System.out.println("No medicines available.");
-        } 
-    	else {
-        System.out.println("Available Medicines:");
-        for (Medicine med : medicines) {
-            System.out.println(med);
-        }
-    	}
-    }
-    
-    public Medicine searchMedicine(String name) {
-        for (Medicine med : medicines) {
-            if (med.getName().equalsIgnoreCase(name)) {
-                return med;
+        } else {
+            System.out.println("Available Medicines:");
+            for (Medicine med : medicines) {
+                System.out.println(med);
             }
         }
-        return null;
     }
-
-    
-    
 }

@@ -1,62 +1,41 @@
+public class Order {
+    private String orderId;
+    private String customerId;
+    private Medicine medicine;
+    private int quantity;
+    private boolean isPaid;
 
-	package model;
-	import java.util.ArrayList;
-	import java.util.Date;
+    public Order(String customerId, Medicine medicine, int quantity) {
+        this.orderId = generateOrderId();
+        this.customerId = customerId;
+        this.medicine = medicine;
+        this.quantity = quantity;
+        this.isPaid = false;  // Initially, the order is not paid
+    }
 
-	public class Order {
-	    private String orderId;
-	    private String customerId;
-	    private Date orderDate;
-	    private double totalAmount;
-	    private ArrayList<OrderDetail> orderDetails;
+    // Generate a unique order ID (you can implement this differently)
+    private String generateOrderId() {
+        return "ORD" + System.currentTimeMillis();
+    }
 
-	    public Order(String orderId, String customerId) {
-	        this.orderId = orderId;
-	        this.customerId = customerId;
-	        this.orderDate = new Date();
-	        this.orderDetails = new ArrayList<>();
-	        this.totalAmount = 0.0;
-	    }
+    public String getOrderId() {
+        return orderId;
+    }
 
-	    public void addOrderDetail(OrderDetail detail) {
-	        orderDetails.add(detail);
-	        totalAmount += detail.getTotalPrice();
-	    }
+    public double getTotalPrice() {
+        return medicine.getPrice() * quantity;
+    }
 
-	    public String getOrderId() {
-	        return orderId;
-	    }
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
 
-	    public String getCustomerId() {
-	        return customerId;
-	    }
+    public boolean isPaid() {
+        return isPaid;
+    }
 
-	    public Date getOrderDate() {
-	        return orderDate;
-	    }
-
-	    public double getTotalAmount() {
-	        return totalAmount;
-	    }
-
-	    public ArrayList<OrderDetail> getOrderDetails() {
-	        return orderDetails;
-	    }
-
-	    @Override
-	    public String toString() {
-	        StringBuilder sb = new StringBuilder();
-	        sb.append("Order ID: ").append(orderId)
-	          .append("\nCustomer ID: ").append(customerId)
-	          .append("\nOrder Date: ").append(orderDate)
-	          .append("\nTotal Amount: ").append(totalAmount)
-	          .append("\nOrder Details:\n");
-
-	        for (OrderDetail detail : orderDetails) {
-	            sb.append(detail.toString()).append("\n");
-	        }
-	        return sb.toString();
-	    }
-	}
-
-	   
+    @Override
+    public String toString() {
+        return "Order ID: " + orderId + ", Medicine: " + medicine.getName() + ", Quantity: " + quantity + ", Paid: " + (isPaid ? "Yes" : "No");
+    }
+}
